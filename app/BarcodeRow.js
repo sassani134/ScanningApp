@@ -3,6 +3,7 @@ import {
     ImageBackground,
     Text,
     View,
+    TouchableOpacity,
 } from 'react-native';
 
 import { styles } from './styles';
@@ -10,6 +11,14 @@ import { styles } from './styles';
 export const BarcodeRow = ({ result = {} }) => {
     const { data, symbology } = result;
 
+    //
+    const minusButton = () => {
+        console.log("Moins");
+    }
+    //
+    const plusButton = () => {
+        console.log("Plus");
+    }
     return (
         <View style={styles.result}>
             <ImageBackground source={require('./images/barcode_black.png')} style={styles.resultImage} />
@@ -20,11 +29,15 @@ export const BarcodeRow = ({ result = {} }) => {
 
                 <View style={styles.resultStockContainer}>
                     <View style={styles.resultStockCircle}>
-                        <Text style={styles.resultStockCircleText}>-</Text>
+                        <TouchableOpacity onPress={minusButton}>
+                            <Text style={styles.resultStockCircleText}>-</Text>
+                        </TouchableOpacity>
                     </View>
                     <Text style={styles.resultStockCount}>{result.itemCount}</Text>
                     <View style={styles.resultStockCircle}>
+                    <TouchableOpacity onPress={plusButton}>
                         <Text style={styles.resultStockCircleText}>+</Text>
+                    </TouchableOpacity>
                     </View>
                 </View>
             </View>

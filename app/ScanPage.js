@@ -31,9 +31,9 @@ export class ScanPage extends Component {
   constructor() {
     super();
 
-    let keyScandit = Platform.OS === 'ios' ? 'AWZw2j4oH8aOAj5WezawUbAXwJZoCGikLXirmB9CDSaaB7210F/zqotSJHh5Rn/Nqkl//b0Tt6MVWqFkQXzxEFZojtTWQiFDJBS6Z8tlWyKAcggAyn6A+WV6Sxm9LQQy5xwn1rwN7KLROpH8BThVjlkUvT4IcixzAs0mgn9aV2zLjrMMUloFAPcjII8mO/kiJ+NmtFyw5ZA8u0W4HZ7telZdeoJB+omlH4Z6DIxUX8X1jWS2HJ222Puby7wwRndp0yB9G6YWsw0w2Q4n+LEap71EJuX+JahhzE0m9jKQzfyfWwCR+IjZPfFo5r43wag4NhcCKuopzLMBAY1hPxIPRakvxyZvcVFkTU31S+carJpXMjJMvgZV2jaa808rtEpGMrNeiA9A5OVUD43EluI8scjAuIG28Tp9xZp9kXqX4tYXAtf5YkZ7ZNRqyrxozjJwoiBvrwMVpN/v0bXYpMZuTi+oNlDMv46ATS/I7MRsskVvxbIWI4grt5UiV2hEh484y7Y92tppGfiYcMx+Ga/eiXeh/U9TLzApLY00GtHStxOQ2y/TRvOz9mt1GOUhKMSgXSK+6c4DtYkb45JrWZySFt7i1jQM+LZ1yKijGXvxBqKmVqt6HeBO+3+P3mwZgrOt3YDlOt/L6gz9MLyarQLqxEU0lBQcjYlL63+DNZVwfe4iJzhr+Xe5yQw0GE5PERgv8qgHc8gLjm/rHwbKtmT6Xbw9U51EDWe85n+ug0rM87RJSUfzrfV0z5fVG04ULz+j0CSrsbaHn2n2ZQURxwJKIzyxItO8JNgFSbbdQkItpoVOhkFsvQGdPa9PFlnI' : 'Ad2gah4oP6esMlwAcC/bPRkA+TCTH2ODOVwvTy5LXPyET/Mu/HC/uBN7/GVsetp1C22Qf7lkEGbBUX1Gb1AfbWZRqwa2eiHIjS9TnxVE1WCwNtiBzVwgXzNOinYLEfu1lSAFofswi+E5LKm5BDGX7XgEmjsieb/t2MR5ivmqs3boe3WnkSJDL+jxVUuO81+FKeiv9aB4LsDBOsqH3xUQAZWa3HNmO+x1YVfk6eBCH2xSE88cRUgYFloKGhiENvilEIR9dkM6sOWpjPIGbSUVDsOgZ2Nw2FVJt048zH7UeWn2h/OdhTAo/aywNesxl9lwJVtH55emKgsrqLtlxRb8wjCEC47JLbV+6jdvqGeBIZ+c0azbs+uo8ec7K5fvKPozUHnvsGpkchAhFDKY/DPcbPoix3vRNJC7+QluMKRu7SfAtR96986qemTHBSmn5u3bsaHsY8Na2cCfT7GJEUI07NbttB6ZFftCbj8E5vts8sUWi1EsYlBPIq1pkHpnNe4zZd0OA+JxROxeWgqwCbGxi2b9Whn4C9Wp6lvygbXyZpvqB4vHdfUkgMzSIkdeeTwkAgPtyV+LkF/8LnLjM7MaMH201SN6QO/fk3cF+sXWu5nTKkwQ+/auryJV+NFqmGcYJpVRRoT4xyBdS4RlvsKP7AgzN6x3ib6ZNPUaXVr/EaT2Pcb3cZ9bU0u6cujwCw2kAGIerbUwQl23wiiOJOUVReP4uhhXZ6RgG7XqOOKW0Y6osEUMlYU8LbuYXJ4oRWv+46Ebvp0Lr2M0XLHMAUYoVCeXEGGsogTF7U29iMv+GcT13KePibVKssLbSQ=='
+    //let keyScandit = Platform.OS === 'ios' ? 'ASSQAi/rDNboP6i7FvuagIozinACOSIgi0jQRepNlnsaSAjAhEYxd5xLbPM1WQuc1m7y+Xt7XAY0X1HszEaLLDYSJNfCZNVjdhUo0HhtSNTSUU9RtgNbTkgkWFsXEZesFhlGUmYvRwmZFk05R+KblUJxHF+6rD+x2RTcb6OtkKNSSXXHLv9vq+5SMCgZfiPHfjDUTsLSYESAx9prj0hY5A7EvirfFJLs+QSN3I7w7lPKfgXtNEjBt9bg7KiA+XxjpEQ8IjIRZrb938ftIa5xdXpGmx4A3ovqhdyuMrLEhvqjSPo62TWVaZecouTkYWCaWZlrbyXVwILcJvgCJW2nJfZlXnM/MCqIYGhKXBkyZ0MFmjZuDnNgRqqmAcWqFQk7qQnkVVKH6cyi5ts94+1FB2DnRgbgqH6OvPiOVnlVSI2W5GV5JUR5ATbu0vVPwPZWfRbZBdl5XgnDeiQFczLlR7yxexV53IRIMew/B2l0xwopdKhHLHZPb2Z305BAwnIKR746C4BwIEMITtda+yRFflXWzAp3lsGtCfBTlFTUrjZUQQy929C9Vjo/JrnxrMpgP7lMczY6hFoe6rYKEGAmAhJoUvStJJbb3/9jeff4bdn85sVGwqw4gnfaZwSBoEPWu9Bl/7t7Z+Faok4C7lcSp8KrEWgo6Q+WY8+gZs/5a6JQpseB4jH0yxAbwTGAVUrSYtDmcsv/wgYFucqm7NJPJll21b+seky8GEJg75AT46ws37uVQsvi4gfRRU+x2XxFmkpSBwbnhOyN/wrDrQ/AbiWiBbxbjcq+74y4yADkEyX5tXf1M+YJwSH1' : 'AZZw0g/rLHt3Dzf1QeF9g1lDibIoOPh4a2fQ/gBkPGDoULokCUAcNj9sXzXdcAYtrSFLc+RWqHiFesjC1VPv/vkGnbu5Tb4ezh2A67x2DCFGR7seindER3ISm4opD5nBESbheiw1fHEGp8Qrho4FFZZrV2c6IyRK+YDA3VLH0a4jz3SGLH5CHkPny31NAydKgjMH+QszKN3Rja0QXoH08BUMi0kxzbxBAJI08URhqg4kxoElS91raycerzVP3Rh0CLylGDZDNotF/ObUpdsCqAbF7NbJ96BjcqlauDFbT+ky85tmrvD0V3hi1IVywLMeraO6gIHwVa+AAIN5LwsdD6CrovAYlaXlri9gcQKXa9NlP352VoyHBUt6UrzVAnZa1htJdgjW5s1wGU341iI2CZ2ceEze4SGnUtIq/IIJwGJgggME0e6Ht0uNFXDa5HhyL1bPdK6SZv1juasQSHTbyhcXJHG4C0JZSZ6XpxlgHJwzjZ2klb2oMdaZvsv9wYnS44WbPhbftUGYhsUcttjBagLLrvQs1o7EW9rbPte0m4QYOc48iy616MTKrj8muMtyGS1XroWSB2GNZG55L+FXPolmXuoj7mJoabpzNH8IpZ3BSteWDccYdA7iJOa7EUIQLj9wna4QHIVmj88fVSro7GIgjaZu5cCwMI8A6UEIk1Ka1Y64ap00Pdm24YZG2Ydq0cuPckJJcQ0+jkeDmm3NmuQ7iCV0/HgGguvHQXH2793hhT6pIhawVqHt3+xTErtH94PEwsieRamZrfsuTnTunVOdOF2dt9U3BJz6iINUzeGpJYkOJucfhNE='
     // Create data capture context using your license key.
-    this.dataCaptureContext = DataCaptureContext.forLicenseKey(keyScandit)
+    this.dataCaptureContext = DataCaptureContext.forLicenseKey("AQeAHCfrBEFdQp37J9I77htFawpGLLavvlTln3t1N8EWWNTZq2pe9SZVhjRjd/69XW4TQ3JxpYTcM5S452xGczoE5hapbn63byjhsJdSt/XoWKUyVAsZpnNr4IOKZvmXlDNMvfYgdKNfE/JhJBFE6NMEEzLLP7sXwA0xmoQGyueS8s0NSM6rTsHm5Ku07PmzG8aBJBbanhIESiTiEIge36yxsSQ52KK0ptncecrPcXlkZvPUu0ugFmFvjsX4JQXcV0PDALAR50IjIPMIqlvqxyoHrtny7awzY78L+V68bJCab5xhr0UOHQFfeH0Cu2x1cehEfr1uUBlBr4DvbM+88ymu/LKNIdwFNncIND4tVTAU9LccoMF3iMp8HDe8PYn/PdnKppMUshmuN5Kuuzd/UhzzH8daoYB8kq5HgLhgEvKpeLv+cfV2AXArzGl0BHHpJFK66eBnDnsAWC9mGrRgu1faX+aGGipRxsA4lNjqx152KlQJ46kdneiNewMm0zzW20e1a6DuWxlJ/lQe7o9VKC5vp9w1y+hXCSlGFkOFwSOf5Anb4pKRbBQ2HhUPSFo9vhfIr2oUgnBdiyMLO/5OcfGPKtCHJ40WcExhMM7Hqtvb1eCxNtLgFVZV5JSUG8CKdkWU5RbRsKvutarRdBnz2LLTkmUIt4AwT8qRCSrDRTsDRk1xadgGHCs8z5A0MEbztBBje4snK7rcgDX+XRqzW80TGiWz3Jjg0L8LEfw7aWsqvI6+aSI7s5r5gDNpsHJkZ9yywhx/xoo4VAXTCR81In89mAKxm889a85+01Ukh8hFkqoEAX8+2VOv7/NtUctjAYG9W/lOhSJcmkeBw00=")
     this.viewRef = React.createRef();
 
     this.onCaptureResults = this.onCaptureResults.bind(this);
@@ -45,7 +45,8 @@ export class ScanPage extends Component {
 
     this.state = {
       show: false,
-      capturedResults: {} // The scan results that will be passed to the barcode list view.
+      capturedResults: {}, // The scan results that will be passed to the barcode list view.
+      
     };
   }
 
@@ -170,6 +171,7 @@ export class ScanPage extends Component {
   }
 
   onCaptureResults() {
+    console.log("onCaptureResults");
     // Do nothing when the card is expanded.
     if (this.state.show) {
       return;
@@ -186,6 +188,8 @@ export class ScanPage extends Component {
   }
 
   onCardPress() {
+    console.log("onCardPress");
+    console.log(this.state);
     if (this.state.show) {
       this.startCapture();
     } else {

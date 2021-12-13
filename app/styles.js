@@ -35,6 +35,8 @@ export const styles = StyleSheet.create({
     fontWeight: "100",
     color: '#707070',
   },
+
+  // creer un autre style bouton similaire
   addBarcodesButton: {
     position: 'absolute',
     right: values.marginInCard,
@@ -46,6 +48,7 @@ export const styles = StyleSheet.create({
     width: values.barcodesButtonDiameter,
     height: values.barcodesButtonDiameter,
   },
+  
   addBarcodesButtonImage: {
     width: values.barcodesButtonDiameter,
     height: values.barcodesButtonDiameter,

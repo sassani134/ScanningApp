@@ -8,7 +8,10 @@ import {
     TouchableWithoutFeedback,
     ImageBackground,
     Easing,
+    Button
 } from 'react-native';
+
+import { sha256 } from 'react-native-sha256';
 
 import { SymbologyDescription } from 'scandit-react-native-datacapture-barcode';
 
@@ -20,6 +23,25 @@ export const BarcodeListView = ({ show = false, results = {}, style = {}, ...pro
 
     // Keep a state of consolidated barcode results.
     const [consolidatedResults, setConsolidatedResults] = useState({});
+
+    //Keep a state of barecodeGroupToken initialy is a hash of Date.now gen
+    //ReferenceError: Can't find variable: genRanHex
+    const [barecodeGroupToken, setBarecodeGroupToken] = useState(sha256(Date.now));
+
+    const [testData, setTestData] = useState(
+        {"capturedResults": 
+            {"0190198454270": {"data": "0190198454270", "symbology": "ean13Upca"}, 
+            "1PMQ8L2ZD/A": {"data": "1PMQ8L2ZD/A", "symbology": "code128"},
+            "354830093329284": {"data": "354830093329284", "symbology": "code128"}, 
+            "SF2LWQ2A7JCM2": {"data": "SF2LWQ2A7JCM2", "symbology": "code128"}
+            }
+        }
+    );
+ 
+    //clear barcode if barecodeGroupToken is change
+    useEffect(()=> {
+        console.log(barecodeGroupToken);
+    },[barecodeGroupToken])
 
     // Update the results when new scans are received via props.
     useEffect(() => {
@@ -105,6 +127,41 @@ export const BarcodeListView = ({ show = false, results = {}, style = {}, ...pro
         return
     }
 
+    // Change barecodeGroupToken
+    const changeBarecodeGroupToken = () => {
+        setBarecodeGroupToken(sha256(Date.now));
+    }
+
+    const  setBarecodeGroupTokenButton = (numberOfItems) => {
+        if (numberOfItems !== 0) {
+            return <TouchableOpacity
+                activeOpacity={.67}
+                style={styles.clearButton}
+                onPress={e => onClearPress(e)}
+            ><Text> barecodeGroupToken </Text></TouchableOpacity>
+        }
+        return
+    }
+
+    //
+    const fetchData = () => {
+        console.log('fetching ...');
+        return fetch('http://192.168.0.43:3000/admin/a_scans', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_token: '12345',
+                barcode: 'yourOtherValue',
+                barcode_token: '54321',
+                barcode_group_token: '09876',
+            })
+
+        });
+    }
+
     const header = (numberOfItems) =>
         <TouchableWithoutFeedback onPress={e => onCardPress(e)}>
             <View style={styles.headerContainer}>
@@ -121,9 +178,16 @@ export const BarcodeListView = ({ show = false, results = {}, style = {}, ...pro
         <TouchableOpacity
             activeOpacity={.67}
             style={styles.addBarcodesButton}
-            onPress={propsSansStyle.onCaptureResults}>
+            onPress={() =>fetchData()}>
             <ImageBackground source={require('./images/fab_add_to_list.png')} style={styles.addBarcodesButtonImage} />
         </TouchableOpacity>
+    
+    const fetchDataButton = () =>
+        <Button
+            title = "fetcher"
+            onPress={() => this.fetchData()}>
+               
+        </Button>
 
     const onClearPress = (e) => {
         setConsolidatedResults({});
@@ -145,6 +209,7 @@ export const BarcodeListView = ({ show = false, results = {}, style = {}, ...pro
                     </ScrollView>
                 </Animated.View>
             </View>
+            {fetchDataButton()}
             {addBarcodesButton()}
         </View >
     );
