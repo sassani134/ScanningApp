@@ -326,6 +326,8 @@ PODS:
     - React
   - RNScreens (2.11.0):
     - React
+  - RNSha256 (1.4.7):
+    - React
   - scandit-react-native-datacapture-barcode (6.9.2):
     - React
     - scandit-react-native-datacapture-core
@@ -394,6 +396,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSha256 (from `../node_modules/react-native-sha256`)
   - scandit-react-native-datacapture-barcode (from `../node_modules/scandit-react-native-datacapture-barcode`)
   - scandit-react-native-datacapture-core (from `../node_modules/scandit-react-native-datacapture-core`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -480,6 +483,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSha256:
+    :path: "../node_modules/react-native-sha256"
   scandit-react-native-datacapture-barcode:
     :path: "../node_modules/scandit-react-native-datacapture-barcode"
   scandit-react-native-datacapture-core:
@@ -492,7 +497,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 59311bf73cd96aeaf25c008d0b867a936a9ace74
+  FBReactNativeSpec: a305256ce7e4e4c6225deed6517d208525561342
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -531,6 +536,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
   RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
   RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
+  RNSha256: bf2c90a9e0cec6dcbcc4100e4e19715ae7feaa34
   scandit-react-native-datacapture-barcode: 392d7aebcce8dc3ae474339ad580a9cb421351dd
   scandit-react-native-datacapture-core: ffc23baec0ea152c31ce6a3df13fe66100cd9025
   ScanditBarcodeCapture: a4848586ad88ecd2679a8c95be70e52d3b5747b1
