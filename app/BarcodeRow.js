@@ -13,7 +13,7 @@ export const BarcodeRow = ({ result = {} }) => {
 
     //
     const minusButton = () => {
-        console.log("Moins");
+        console.log(result);
     }
     //
     const plusButton = () => {
