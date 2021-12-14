@@ -28,15 +28,24 @@ export const BarcodeListView = ({ show = false, results = {}, style = {}, ...pro
     //ReferenceError: Can't find variable: genRanHex
     const [barecodeGroupToken, setBarecodeGroupToken] = useState(sha256(Date.now));
 
-    const [testData, setTestData] = useState(
-        {"capturedResults": 
+    // Fake barecode test for the fetch
+    const [dummyData, setDummyData] = useState(
+        {"barecodeGroupToken1": 
             {"0190198454270": {"data": "0190198454270", "symbology": "ean13Upca"}, 
             "1PMQ8L2ZD/A": {"data": "1PMQ8L2ZD/A", "symbology": "code128"},
             "354830093329284": {"data": "354830093329284", "symbology": "code128"}, 
             "SF2LWQ2A7JCM2": {"data": "SF2LWQ2A7JCM2", "symbology": "code128"}
+            },
+        "barecodeGroupToken2": 
+            {"1190198454271": {"data": "1190198454271", "symbology": "van13Upca"}, 
+            "1PMQ8L2ZD/AZ": {"data": "1PMQ8L2ZD/AZ", "symbology": "code128"},
+            "854830093329285": {"data": "854830093329285", "symbology": "code128"}, 
+            "NF2LWQ2A7JCMZ": {"data": "NF2LWQ2A7JCMZ", "symbology": "code128"}
             }
-        }
+        },
     );
+
+    const [testData, setTestData] = useState();
  
     //clear barcode if barecodeGroupToken is change
     useEffect(()=> {
