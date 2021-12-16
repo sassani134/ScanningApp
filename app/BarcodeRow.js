@@ -4,20 +4,31 @@ import {
     Text,
     View,
     TouchableOpacity,
+    TextInput,
 } from 'react-native';
+import { useEffect } from 'react/cjs/react.development';
 
 import { styles } from './styles';
 
 export const BarcodeRow = ({ result = {} }) => {
     const { data, symbology } = result;
 
+    useEffect(() => {
+        console.log("change")
+    },[result.itemCount])
     //
     const minusButton = () => {
         console.log(result);
+        if(result.itemCount <= 0){
+            console.log('faut plus que je m affiche');
+        } else {
+            result.itemCount = result.itemCount - 1;
+        }
+        console.log('-1');
     }
     //
     const plusButton = () => {
-        console.log("Plus");
+        console.log(result);
     }
     return (
         <View style={styles.result}>
@@ -33,7 +44,11 @@ export const BarcodeRow = ({ result = {} }) => {
                             <Text style={styles.resultStockCircleText}>-</Text>
                         </TouchableOpacity>
                     </View>
-                    <Text style={styles.resultStockCount}>{result.itemCount}</Text>
+                    <TextInput 
+                        style={styles.resultStockCount}
+                        keyboardType='number-pad'
+                        
+                    >{result.itemCount}</TextInput>
                     <View style={styles.resultStockCircle}>
                     <TouchableOpacity onPress={plusButton}>
                         <Text style={styles.resultStockCircleText}>+</Text>

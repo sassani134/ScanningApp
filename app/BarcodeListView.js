@@ -134,7 +134,7 @@ export const BarcodeListView = ({
         <TouchableOpacity
           activeOpacity={0.67}
           style={styles.clearButton}
-          onPress={(e) => onClearPress(e)}>
+          onPress={() => console.log(consolidatedResults)}>
           <Text>Clear</Text>
         </TouchableOpacity>
       );
@@ -192,7 +192,7 @@ export const BarcodeListView = ({
     <TouchableOpacity
       activeOpacity={0.67}
       style={styles.addBarcodesButton}
-      onPress={() => fetchData()}>
+      onPress={propsSansStyle.onCaptureResults}>
       <ImageBackground
         source={require('./images/fab_add_to_list.png')}
         style={styles.addBarcodesButtonImage}

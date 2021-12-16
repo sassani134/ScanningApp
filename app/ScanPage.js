@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { AppState, BackHandler } from 'react-native';
+import React, {Component} from 'react';
+import {AppState, BackHandler} from 'react-native';
 import {
   BarcodeTracking,
   BarcodeTrackingBasicOverlay,
@@ -22,18 +22,19 @@ import {
   Feedback,
 } from 'scandit-react-native-datacapture-core';
 
-import { requestCameraPermissionsIfNeeded } from './camera-permission-handler';
-import { BarcodeListView } from './BarcodeListView';
-import { styles, values } from './styles';
+import {requestCameraPermissionsIfNeeded} from './camera-permission-handler';
+import {BarcodeListView} from './BarcodeListView';
+import {styles, values} from './styles';
 
 export class ScanPage extends Component {
-
   constructor() {
     super();
 
     //let keyScandit = Platform.OS === 'ios' ? 'ASSQAi/rDNboP6i7FvuagIozinACOSIgi0jQRepNlnsaSAjAhEYxd5xLbPM1WQuc1m7y+Xt7XAY0X1HszEaLLDYSJNfCZNVjdhUo0HhtSNTSUU9RtgNbTkgkWFsXEZesFhlGUmYvRwmZFk05R+KblUJxHF+6rD+x2RTcb6OtkKNSSXXHLv9vq+5SMCgZfiPHfjDUTsLSYESAx9prj0hY5A7EvirfFJLs+QSN3I7w7lPKfgXtNEjBt9bg7KiA+XxjpEQ8IjIRZrb938ftIa5xdXpGmx4A3ovqhdyuMrLEhvqjSPo62TWVaZecouTkYWCaWZlrbyXVwILcJvgCJW2nJfZlXnM/MCqIYGhKXBkyZ0MFmjZuDnNgRqqmAcWqFQk7qQnkVVKH6cyi5ts94+1FB2DnRgbgqH6OvPiOVnlVSI2W5GV5JUR5ATbu0vVPwPZWfRbZBdl5XgnDeiQFczLlR7yxexV53IRIMew/B2l0xwopdKhHLHZPb2Z305BAwnIKR746C4BwIEMITtda+yRFflXWzAp3lsGtCfBTlFTUrjZUQQy929C9Vjo/JrnxrMpgP7lMczY6hFoe6rYKEGAmAhJoUvStJJbb3/9jeff4bdn85sVGwqw4gnfaZwSBoEPWu9Bl/7t7Z+Faok4C7lcSp8KrEWgo6Q+WY8+gZs/5a6JQpseB4jH0yxAbwTGAVUrSYtDmcsv/wgYFucqm7NJPJll21b+seky8GEJg75AT46ws37uVQsvi4gfRRU+x2XxFmkpSBwbnhOyN/wrDrQ/AbiWiBbxbjcq+74y4yADkEyX5tXf1M+YJwSH1' : 'AZZw0g/rLHt3Dzf1QeF9g1lDibIoOPh4a2fQ/gBkPGDoULokCUAcNj9sXzXdcAYtrSFLc+RWqHiFesjC1VPv/vkGnbu5Tb4ezh2A67x2DCFGR7seindER3ISm4opD5nBESbheiw1fHEGp8Qrho4FFZZrV2c6IyRK+YDA3VLH0a4jz3SGLH5CHkPny31NAydKgjMH+QszKN3Rja0QXoH08BUMi0kxzbxBAJI08URhqg4kxoElS91raycerzVP3Rh0CLylGDZDNotF/ObUpdsCqAbF7NbJ96BjcqlauDFbT+ky85tmrvD0V3hi1IVywLMeraO6gIHwVa+AAIN5LwsdD6CrovAYlaXlri9gcQKXa9NlP352VoyHBUt6UrzVAnZa1htJdgjW5s1wGU341iI2CZ2ceEze4SGnUtIq/IIJwGJgggME0e6Ht0uNFXDa5HhyL1bPdK6SZv1juasQSHTbyhcXJHG4C0JZSZ6XpxlgHJwzjZ2klb2oMdaZvsv9wYnS44WbPhbftUGYhsUcttjBagLLrvQs1o7EW9rbPte0m4QYOc48iy616MTKrj8muMtyGS1XroWSB2GNZG55L+FXPolmXuoj7mJoabpzNH8IpZ3BSteWDccYdA7iJOa7EUIQLj9wna4QHIVmj88fVSro7GIgjaZu5cCwMI8A6UEIk1Ka1Y64ap00Pdm24YZG2Ydq0cuPckJJcQ0+jkeDmm3NmuQ7iCV0/HgGguvHQXH2793hhT6pIhawVqHt3+xTErtH94PEwsieRamZrfsuTnTunVOdOF2dt9U3BJz6iINUzeGpJYkOJucfhNE='
     // Create data capture context using your license key.
-    this.dataCaptureContext = DataCaptureContext.forLicenseKey("AQeAHCfrBEFdQp37J9I77htFawpGLLavvlTln3t1N8EWWNTZq2pe9SZVhjRjd/69XW4TQ3JxpYTcM5S452xGczoE5hapbn63byjhsJdSt/XoWKUyVAsZpnNr4IOKZvmXlDNMvfYgdKNfE/JhJBFE6NMEEzLLP7sXwA0xmoQGyueS8s0NSM6rTsHm5Ku07PmzG8aBJBbanhIESiTiEIge36yxsSQ52KK0ptncecrPcXlkZvPUu0ugFmFvjsX4JQXcV0PDALAR50IjIPMIqlvqxyoHrtny7awzY78L+V68bJCab5xhr0UOHQFfeH0Cu2x1cehEfr1uUBlBr4DvbM+88ymu/LKNIdwFNncIND4tVTAU9LccoMF3iMp8HDe8PYn/PdnKppMUshmuN5Kuuzd/UhzzH8daoYB8kq5HgLhgEvKpeLv+cfV2AXArzGl0BHHpJFK66eBnDnsAWC9mGrRgu1faX+aGGipRxsA4lNjqx152KlQJ46kdneiNewMm0zzW20e1a6DuWxlJ/lQe7o9VKC5vp9w1y+hXCSlGFkOFwSOf5Anb4pKRbBQ2HhUPSFo9vhfIr2oUgnBdiyMLO/5OcfGPKtCHJ40WcExhMM7Hqtvb1eCxNtLgFVZV5JSUG8CKdkWU5RbRsKvutarRdBnz2LLTkmUIt4AwT8qRCSrDRTsDRk1xadgGHCs8z5A0MEbztBBje4snK7rcgDX+XRqzW80TGiWz3Jjg0L8LEfw7aWsqvI6+aSI7s5r5gDNpsHJkZ9yywhx/xoo4VAXTCR81In89mAKxm889a85+01Ukh8hFkqoEAX8+2VOv7/NtUctjAYG9W/lOhSJcmkeBw00=")
+    this.dataCaptureContext = DataCaptureContext.forLicenseKey(
+      'AQ7wLSduBj7sPMwyMQwa+vMNI7nFMbWe4VNfGd1GNuF4JjyVhmPYZ60ylO1DNbfm3kF0gchJUqJaa9XO1k2Cko5q24IxTeY0qQ2k7vJqUw29WHxDyX7Xa64It1aYB8gq0RdRJ8ALECuGiefFj1I94G8Gs414SihxVFUuG/EghJbSIu241QwKRTthr2hQalvH3Y7E6dmpXUC8+9kDzb9otCT41LJQdJA5xBgiOX790OpZEJO/Qgu8iYC/Bx7dW0Pa4yomZU+JM9RLQ9GbZmHDEolEzp8rjPoVGHwTLXOQHYy0zONn25B8DUT0eljhK9B4vRz/IXq4dNinTUtjZ0aVHlyHJynEtXd9w0zasICUukbEsiK4UWDqD3K6NAqiRALx+Ad4vqdkIhCKMrUcmDYRikXs1NF3xIQNBliRL/lxcr2BR34ir88F8dHWBis0xOO+Ytp20bvYFbgzPYu1gx53WUtbek/2bs292FL9cH1uJGC7OzeXHGACSTVNNWt0eW1anSqlRQd3phinn80jIeH2UolL99CABDRMJRcH9LORzyMjusWJDlvMPIHRhr1GrXqDWhM91qdhNtmFpyPc0j+qz5iPDnSiX7X0CB1FTpRK9k0LQGxeW07crdsrYWDot4kxubuLLJAyjpdAlnkg99b3kdhc5jlceAyP+SwuuNNrvkg2MFk3jfP3y8xIxjmFhNh+Zat8amJaQm7O5shje8OMVjKPmpaM8glv1l0W1GPW7TH6aUtwSP2WQEew3bCu7rFWI443DBtFRzNjwVPFs7Ci7x2tMSzLfjS94pS4Q6+efmORJLpPS6d1y3Q='
+    );
     this.viewRef = React.createRef();
 
     this.onCaptureResults = this.onCaptureResults.bind(this);
@@ -45,8 +46,9 @@ export class ScanPage extends Component {
 
     this.state = {
       show: false,
-      capturedResults: {}, // The scan results that will be passed to the barcode list view.
-      
+      capturedResults: {
+      },
+      // The scan results that will be passed to the barcode list view.
     };
   }
 
@@ -74,7 +76,7 @@ export class ScanPage extends Component {
     } else {
       this.startCapture();
     }
-  }
+  };
 
   startCapture() {
     this.startCamera();
@@ -128,50 +130,57 @@ export class ScanPage extends Component {
       Symbology.DataMatrix,
       Symbology.QR,
       Symbology.MicroQR,
-
     ]);
 
     // Create new barcode tracking mode with the settings from above.
-    this.barcodeTracking = BarcodeTracking.forContext(this.dataCaptureContext, settings);
-
+    this.barcodeTracking = BarcodeTracking.forContext(
+      this.dataCaptureContext,
+      settings,
+    );
+    
+    //Surment ici qu'on peux faire en sorte de scan sans le bouton +
     // Register a listener to get informed whenever a new barcode is tracked.
     this.barcodeTrackingListener = {
       didUpdateSession: (_, session) => {
         this.results = {};
-        Object.values(session.trackedBarcodes).forEach(trackedBarcode => {
-          const { data, symbology } = trackedBarcode.barcode;
-          this.results[data] = { data, symbology };
+        Object.values(session.trackedBarcodes).forEach((trackedBarcode) => {
+          const {data, symbology} = trackedBarcode.barcode;
+          this.results[data] = {data, symbology};
         });
-      }
+      },
     };
 
     this.barcodeTracking.addListener(this.barcodeTrackingListener);
 
     // Add a barcode tracking overlay to the data capture view to render the location of captured barcodes on top of
     // the video preview. This is optional, but recommended for better visual feedback.
-    const overlay = BarcodeTrackingBasicOverlay.withBarcodeTrackingForView(this.barcodeTracking, this.viewRef.current);
+    const overlay = BarcodeTrackingBasicOverlay.withBarcodeTrackingForView(
+      this.barcodeTracking,
+      this.viewRef.current,
+    );
 
-    // Implement the BarcodeTrackingBasicOverlayListener interface. 
-    // The method BarcodeTrackingBasicOverlayListener.brushForTrackedBarcode() is invoked every time a new tracked 
+    // Implement the BarcodeTrackingBasicOverlayListener interface.
+    // The method BarcodeTrackingBasicOverlayListener.brushForTrackedBarcode() is invoked every time a new tracked
     // barcode appears and it can be used to set a brush that will highlight that specific barcode in the overlay.
     overlay.listener = {
-      brushForTrackedBarcode: (overlay, trackedBarcode) => new Brush(
-        Color.fromRGBA(255, 255, 255, 0.4),
-        Color.fromRGBA(255, 255, 255, 1),
-        2
-      )
+      brushForTrackedBarcode: (overlay, trackedBarcode) =>
+        new Brush(
+          Color.fromRGBA(255, 255, 255, 0.4),
+          Color.fromRGBA(255, 255, 255, 1),
+          2,
+        ),
     };
   }
 
   logoOffset() {
     return new PointWithUnit(
-        new NumberWithUnit(0, MeasureUnit.Pixel),
-        new NumberWithUnit(-values.cardMinHeight, MeasureUnit.DIP)
+      new NumberWithUnit(0, MeasureUnit.Pixel),
+      new NumberWithUnit(-values.cardMinHeight, MeasureUnit.DIP),
     );
   }
 
   onCaptureResults() {
-    console.log("onCaptureResults");
+    console.log('onCaptureResults');
     // Do nothing when the card is expanded.
     if (this.state.show) {
       return;
@@ -182,13 +191,13 @@ export class ScanPage extends Component {
     }
 
     this.setState({
-      capturedResults: Object.assign({}, this.results)
-    })
+      capturedResults: Object.assign({}, this.results),
+    });
     this.results = {};
   }
 
   onCardPress() {
-    console.log("onCardPress");
+    console.log('onCardPress');
     console.log(this.state);
     if (this.state.show) {
       this.startCapture();
@@ -197,22 +206,26 @@ export class ScanPage extends Component {
     }
 
     this.setState({
-      show: !this.state.show
-    })
+      show: !this.state.show,
+    });
   }
 
   onClearPress() {
     this.startCapture();
     this.setState({
-      show: false
-    })
+      show: false,
+    });
   }
 
   render() {
-    const { show, capturedResults } = this.state;
+    const {show, capturedResults} = this.state;
     return (
       <>
-        <DataCaptureView style={styles.scanContainer} context={this.dataCaptureContext} ref={this.viewRef} />
+        <DataCaptureView
+          style={styles.scanContainer}
+          context={this.dataCaptureContext}
+          ref={this.viewRef}
+        />
         <BarcodeListView
           show={show}
           results={capturedResults}
@@ -222,5 +235,5 @@ export class ScanPage extends Component {
         />
       </>
     );
-  };
+  }
 }
