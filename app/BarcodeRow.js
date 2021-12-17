@@ -49,7 +49,7 @@ export const BarcodeRow = ({ result = {} }) => {
                         </TouchableOpacity>
                     </View>
                     <TextInput 
-                        style={styles.resultStockCount}
+                        style={styles.input}
                         keyboardType='number-pad'
                         onChangeText={x => updateValue(x)}
                         value={result.itemCount.toString()}
