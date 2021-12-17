@@ -164,18 +164,14 @@ export const BarcodeListView = ({
   //
   const fetchData = () => {
     console.log('fetching ...');
-    return fetch('http://192.168.0.43:3000/admin/a_scans', {
+    return fetch('http://192.168.0.43:3000/admin/a_scans/create_multiply', {
       method: 'POST',
+      format: 'json',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        user_token: '12345',
-        barcode: 'yourOtherValue',
-        barcode_token: '54321',
-        barcode_group_token: '09876',
-      }),
+      body: JSON.stringify( consolidatedResults),
     });
   };
 
@@ -195,6 +191,18 @@ export const BarcodeListView = ({
       onPress={propsSansStyle.onCaptureResults}>
       <ImageBackground
         source={require('./images/fab_add_to_list.png')}
+        style={styles.addBarcodesButtonImage}
+      />
+    </TouchableOpacity>
+  );
+
+  const addFetchButton = () => (
+    <TouchableOpacity
+      activeOpacity={0.67}
+      style={styles.addFetchButton}
+      onPress={() => fetchData()}>
+      <ImageBackground
+        source={require('./images/fab_fetch_to_rails.png')}
         style={styles.addBarcodesButtonImage}
       />
     </TouchableOpacity>
@@ -227,6 +235,7 @@ export const BarcodeListView = ({
         </Animated.View>
       </View>
       {addBarcodesButton()}
+      {addFetchButton()}
     </View>
   );
 };
