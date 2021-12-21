@@ -162,18 +162,38 @@ export const BarcodeListView = ({
   };
 
   //
+  // const fetchData = () => {
+  //   console.log('fetching ...');
+  //   return fetch('http://127.0.0.1:3000/admin/mdmb_scans', {
+  //     method: 'POST',
+  //     format: 'json',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify( consolidatedResults),
+  //   }),
+  //   error: function(xhr,status) { 
+  //     console.log(status);
+  //   });
+  // };
+
   const fetchData = () => {
-    console.log('fetching ...');
-    return fetch('http://192.168.0.43:3000/admin/a_scans/create_multiply', {
-      method: 'POST',
-      format: 'json',
-      headers: {
+    return fetch("http://192.168.0.139:3000/admin/mdmb_scans" , {
+     method: 'POST',
+     format: 'json',
+        headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify( consolidatedResults),
-    });
-  };
+      body: JSON.stringify({ data: consolidatedResults })
+   }).then((response) => {
+      console.log(response)
+      clear();
+   })
+
+
+ }
 
   const header = (numberOfItems) => (
     <TouchableWithoutFeedback onPress={(e) => onCardPress(e)}>
@@ -217,6 +237,11 @@ export const BarcodeListView = ({
     propsSansStyle.onClearPress();
   };
 
+  const clear = () => {
+    console.log("clear")
+    setConsolidatedResults({});
+    propsSansStyle.onClearPress();
+  };
   const onCardPress = (e) => {
     e.stopPropagation();
     propsSansStyle.onCardPress(e);
